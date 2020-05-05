@@ -1,0 +1,37 @@
+<div class=" d-flex justify-content-between p-2">
+    <a href="#" class="text-muted small" (click)="toggleOnlyImportant()">{{isOnlyImportant() ? 'Показать все' : 'Показать важные'}}</a>
+    <a href="#" (click)="removeCompletedItems()" class="text-danger small">
+        Удалить завершенные
+    </a>
+</div>
+<div>
+    <div class="text-muted text-center p-2" *ngIf="getItems().length === 0">
+        Нет записей для вывода
+    </div>
+    <ul class="list-group list-group-flush">
+    <li 
+    *ngFor="let item of getItems()" 
+    class="list-group-item d-flex justify-content-between align-items-center"
+    [class.task-important]="item.important"
+    [class.task-completed]="item.completed"
+    >
+    <div class="task-checkbox">
+        <input 
+        type="checkbox"
+        [checked]="item.completed"
+        (click)="toggleCompleted(item.id)"
+        >
+    </div>
+    <div class="task-title">
+        {{item.title}}
+    </div>
+    <div class="task-category text-right text-muted small">
+        {{item.category}}
+    </div>
+    <div class="task-star text-right" (click)="toggleImportant(item.id)">
+        <span class="material-icons" *ngIf="item.important">star</span>
+        <span class="material-icons" *ngIf="!item.important">star_border</span>
+    </div>
+    </li>
+</ul>
+</div>

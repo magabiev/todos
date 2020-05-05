@@ -1,0 +1,8 @@
+<ul class="list-group list-group-flush">
+    <li class="list-group-item px-8 border-8">
+        <a href="#" class="text-dark" (click)="selectedCategory(null)">Все</a>
+    </li>
+    <li *ngFor="let category of getCategories()" class="list-group-item px-8 border-8">
+        <a href="#" (click)="selectedCategory(category)" class="text-dark">{{category}}</a>
+    </li>
+</ul>
